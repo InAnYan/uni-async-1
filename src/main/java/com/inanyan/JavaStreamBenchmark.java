@@ -3,7 +3,6 @@ package com.inanyan;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @BenchmarkMode(Mode.AverageTime)
 @Fork(value = 2)
