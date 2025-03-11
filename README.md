@@ -23,20 +23,20 @@
 
 ### Повна інформація
 
-| Stream Type     | Method             |   Tests count |   Time of one operation(ms) |
-|:----------------|:-------------------|--------------:|----------------------------:|
-| Java Stream     | Average (method 1) |            20 |                      42.871 |
-| Java Stream     | Average (method 2) |            20 |                      50.833 |
-| Java Stream     | Filtering          |            20 |                      41.347 |
-| Java Stream     | Standard deviation |            20 |                      50.098 |
-| Java Stream     | Sum                |            20 |                      39.955 |
-| Java Stream     | Multiply by 2      |            20 |                     112.319 |
-| Parallel Stream | Average (method 1) |            20 |                      19.149 |
-| Parallel Stream | Average (method 2) |            20 |                      19.623 |
-| Parallel Stream | Filtering          |            20 |                       8.826 |
-| Parallel Stream | Standard deviation |            20 |                      25.572 |
-| Parallel Stream | Sum                |            20 |                      19.015 |
-| Parallel Stream | Multiply by 2      |            20 |                      71.216 |
+| Stream Type     | Method             |   Tests count | Time of one operation (ms) |
+|:----------------|:-------------------|--------------:|---------------------------:|
+| Java Stream     | Average (method 1) |            20 |                     42.871 |
+| Java Stream     | Average (method 2) |            20 |                     50.833 |
+| Java Stream     | Filtering          |            20 |                     41.347 |
+| Java Stream     | Standard deviation |            20 |                     50.098 |
+| Java Stream     | Sum                |            20 |                     39.955 |
+| Java Stream     | Multiply by 2      |            20 |                    112.319 |
+| Parallel Stream | Average (method 1) |            20 |                     19.149 |
+| Parallel Stream | Average (method 2) |            20 |                     19.623 |
+| Parallel Stream | Filtering          |            20 |                      8.826 |
+| Parallel Stream | Standard deviation |            20 |                     25.572 |
+| Parallel Stream | Sum                |            20 |                     19.015 |
+| Parallel Stream | Multiply by 2      |            20 |                     71.216 |
 
 ### Групування по типу `Stream` та задачі для час виконання операції
 
