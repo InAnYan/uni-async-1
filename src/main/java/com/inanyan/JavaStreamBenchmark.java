@@ -3,11 +3,13 @@ package com.inanyan;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
-@Fork(value = 2)
-@Warmup(iterations = 2)
-@Measurement(iterations = 1)
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@Warmup(iterations = 10, time = 2, timeUnit = TimeUnit.MILLISECONDS)
+@Measurement(iterations = 20, time = 2, timeUnit = TimeUnit.MILLISECONDS)
+@Fork(value = 1)
 public class JavaStreamBenchmark {
     @Benchmark
     public int sum(IntegersState state) {

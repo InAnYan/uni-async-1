@@ -23,36 +23,34 @@
 
 ### Повна інформація
 
-*Кожна задача виконувалася по 2 рази (бо `@Fork(value = 2)` та `@Measurement(iterations = 1)`).*
+| Stream Type     | Method             |   Tests count |   Time of one operation(ms) |
+|:----------------|:-------------------|--------------:|----------------------------:|
+| Java Stream     | Average (method 1) |            20 |                      42.871 |
+| Java Stream     | Average (method 2) |            20 |                      50.833 |
+| Java Stream     | Filtering          |            20 |                      41.347 |
+| Java Stream     | Standard deviation |            20 |                      50.098 |
+| Java Stream     | Sum                |            20 |                      39.955 |
+| Java Stream     | Multiply by 2      |            20 |                     112.319 |
+| Parallel Stream | Average (method 1) |            20 |                      19.149 |
+| Parallel Stream | Average (method 2) |            20 |                      19.623 |
+| Parallel Stream | Filtering          |            20 |                       8.826 |
+| Parallel Stream | Standard deviation |            20 |                      25.572 |
+| Parallel Stream | Sum                |            20 |                      19.015 |
+| Parallel Stream | Multiply by 2      |            20 |                      71.216 |
 
-| Stream Type     | Task               | Score | Units |
-|-----------------|--------------------|-------|-------|
-| Java Stream     | Average (method 1) | 0.039 | s/op  |
-| Java Stream     | Average (method 2) | 0.037 | s/op  |
-| Java Stream     | Filtering          | 0.037 | s/op  |
-| Java Stream     | Standard deviation | 0.034 | s/op  |
-| Java Stream     | Sum                | 0.040 | s/op  |
-| Java Stream     | Multiply by 2      | 0.128 | s/op  |
-| Parallel Stream | Average (method 1) | 0.017 | s/op  |
-| Parallel Stream | Average (method 2) | 0.017 | s/op  |
-| Parallel Stream | Filtering          | 0.009 | s/op  |
-| Parallel Stream | Standard deviation | 0.026 | s/op  |
-| Parallel Stream | Sum                | 0.017 | s/op  |
-| Parallel Stream | Multiply by 2      | 0.069 | s/op  |
+### Групування по типу `Stream` та задачі для час виконання операції
 
-### Групування по типу `Stream` та задачі
+| Stream Type     |   Average (method 1) |   Average (method 2) |   Filtering |   Multiply by 2 |   Standard deviation |    Sum |
+|:----------------|---------------------:|---------------------:|------------:|----------------:|---------------------:|-------:|
+| Java Stream     |               42.871 |               50.833 |      41.347 |         112.319 |               50.098 | 39.955 |
+| Parallel Stream |               19.149 |               19.623 |       8.826 |          71.216 |               25.572 | 19.015 |% 
 
-| Stream Type     | Average (method 1) | Average (method 2) | Filtering | Multiply by 2 | Standard deviation | Sum   |
-|-----------------|--------------------|--------------------|-----------|---------------|--------------------|-------|
-| Java Stream     | 0.039              | 0.037              | 0.037     | 0.128         | 0.034              | 0.04  |
-| Parallel Stream | 0.017              | 0.017              | 0.009     | 0.069         | 0.026              | 0.017 |
+### Порівняння часу виконання у різних `Stream`'ах
 
-### Порівняння `Stream`'ів
-
-| Stream Type     | Mean     | Std      |
-|-----------------|----------|----------|
-| Java Stream     | 0.0525   | 0.037045 |
-| Parallel Stream | 0.025833 | 0.021821 |
+| Stream Type     |    mean |     std |
+|:----------------|--------:|--------:|
+| Java Stream     | 56.2372 | 27.848  |
+| Parallel Stream | 27.2335 | 22.2121 |
 
 ### Аналіз
 
@@ -61,10 +59,10 @@ $$ H_a : \mu_p < \mu_j $$
 
 Обчислимо двовибірковий Z-тест (з граничним значенням $\alpha = 0.05$):
 
-$$ Z = \frac{\mu_p - \mu_j}{\sqrt{\frac{\sigma_p^2}{n_p} + \frac{\sigma_j^2}{n_j}}} = \frac{0.025833 - 0.0525}{\sqrt{\frac{0.021821^2}{16} + \frac{0.037045^2}{16}}} = -2.480994643979991 \approx -2.481 $$
+$$ Z = \frac{\mu_p - \mu_j}{\sqrt{\frac{\sigma_p^2}{n_p} + \frac{\sigma_j^2}{n_j}}} = \frac{27.2335 - 56.2372}{\sqrt{\frac{22.2121^2}{120} + \frac{27.848^2}{120}}} \approx -8.91 $$
 
-*Коментар: $\approx$ тут впринципі не має сенсу, оскільки обчислення вже мають похибку*.
+*Коментар: $\approx$ тут впринципі не має сенсу, оскільки обчислення вже мають похибку та округлення*.
 
-Значенню $ Z = -2.481 $ відповідає $p$-значення з обох хвостів - $ 0.0131 $.
+Значенню $ Z = -8.91 $ відповідає дуже (дуже) маленьке значення $ p $.
 
 $ p < \alpha $, отже, можемо, *прости господи навіщо я це роблю*, відхилити нульову гіпотезу.
